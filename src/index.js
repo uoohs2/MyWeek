@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter basename="https://uoohs2.github.io/react-github-pages/">
     <App />
   </BrowserRouter>,
   document.getElementById("root")

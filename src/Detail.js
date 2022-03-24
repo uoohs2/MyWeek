@@ -16,15 +16,15 @@ const Detail = (props) => {
       </h3>
       <ItemStyle>
         {Array.from({ length: 5 }, (item, index) => {
+          //Home처럼 스프레드 문법을 사용하지 않고 from을 사용해줬다.
           return (
             <CircleBtn
               key={index}
               onClick={() => {
                 setScore(index + 1);
               }}
-              style={{
-                backgroundColor: score < index + 1 ? "#ddd" : "slateblue",
-              }}
+              score={score}
+              index={index}
             ></CircleBtn>
           );
         })}
@@ -74,7 +74,8 @@ const CircleBtn = styled.button`
   margin: 0 5px;
   border: none;
   border-radius: 50%;
-  background-color: slateblue;
+  background-color: ${(props) =>
+    props.score < props.index + 1 ? "#ddd" : "slateblue"};
   &:hover {
     cursor: pointer;
   }

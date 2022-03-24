@@ -12,20 +12,12 @@ const Home = (props) => {
       <Title>내 일주일은 ٩( ᐛ )و ?</Title>
       <ListStyle>
         {week_day.map((day, i) => {
-          //평점이 랜덤으로 나오도록 랜덤함수 적용
-          const score = Math.floor(Math.random() * 8) + 1;
+          const score = Math.floor(Math.random() * 8) + 1; //week_day 요소마다 랜덤으로 나오게 하기 위해서 map을 돌릴때 랜덤함수를 선언해줬다.
           return (
             <ItemStyle key={i}>
               <DayStyle>{day}</DayStyle>
-              {Array.from({ length: 5 }).map((item, j) => {
-                return (
-                  <ScoreStyle
-                    key={j}
-                    style={{
-                      backgroundColor: score > j ? "slateblue" : "#ddd",
-                    }}
-                  ></ScoreStyle>
-                );
+              {[...Array(5)].map((item, j) => {
+                return <ScoreStyle key={j} score={score} j={j}></ScoreStyle>;
               })}
               <MoveBtn
                 onClick={() => {
@@ -88,6 +80,8 @@ const ScoreStyle = styled.div`
   border: none;
   border-radius: 50%;
   margin: 0 3px;
+  background-color: ${(props) =>
+    props.score > props.j ? "slateblue" : "#ddd"};
 `;
 
 const MoveBtn = styled.button`
